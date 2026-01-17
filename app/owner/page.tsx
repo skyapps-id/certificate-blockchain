@@ -29,15 +29,12 @@ export default function Admin() {
 
       const ethereum = (window as any).ethereum;
 
-      // 1. Connect wallet
       await ethereum.request({ method: "eth_requestAccounts" });
 
-      // 2. Cek chain
       const currentChainId = await ethereum.request({
         method: "eth_chainId",
       });
 
-      // 3. Kalau bukan Sepolia → coba switch
       if (currentChainId !== SEPOLIA_CHAIN_ID) {
         try {
           await ethereum.request({
@@ -45,7 +42,6 @@ export default function Admin() {
             params: [{ chainId: SEPOLIA_CHAIN_ID }],
           });
         } catch (err: any) {
-          // 4902 = chain belum ada di MetaMask
           if (err.code === 4902) {
             alert(
               "Sepolia network is not available in your MetaMask. Please add Sepolia Testnet manually first."
@@ -57,7 +53,6 @@ export default function Admin() {
         }
       }
 
-      // 4. Pastikan benar-benar sudah di Sepolia
       const newChainId = await ethereum.request({ method: "eth_chainId" });
       if (newChainId !== SEPOLIA_CHAIN_ID) {
         alert("Failed to switch to Sepolia. Please switch manually.");
@@ -67,10 +62,8 @@ export default function Admin() {
       const autoCertId = certId || generateCertId();
       setCertId(autoCertId);
 
-      // 5. Ambil contract
       const contract = await getSignerContract();
 
-      // 6. Kirim transaksi
       const tx = await contract.issueCertificate(autoCertId, name, course);
       const receipt = await tx.wait();
 
@@ -159,11 +152,10 @@ export default function Admin() {
             <button
               onClick={issueCertificate}
               disabled={loading || !name || !course}
-              className={`w-full py-4 rounded-xl font-semibold text-white transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg ${
-                loading || !name || !course
+              className={`w-full py-4 rounded-xl font-semibold text-white transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg ${loading || !name || !course
                   ? "bg-white/10 cursor-not-allowed border border-white/10"
                   : "bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 shadow-violet-500/30"
-              }`}
+                }`}
             >
               {loading ? (
                 <span className="flex items-center justify-center gap-2">
@@ -230,8 +222,8 @@ export default function Admin() {
         </div>
 
         <div className="mt-6 text-center">
-          <a 
-            href="/" 
+          <a
+            href="/"
             className="inline-flex items-center gap-2 text-white/70 hover:text-white text-sm transition-colors group"
           >
             <svg className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
