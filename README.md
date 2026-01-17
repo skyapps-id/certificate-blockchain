@@ -157,12 +157,32 @@ npm start
 
 ### Issue Certificate (Admin)
 
+⚠️ **Important**: You must use MetaMask wallet connected to **Sepolia testnet** to issue certificates.
+
 1. Visit `/owner` page
-2. Ensure MetaMask is connected to Sepolia testnet
-3. Enter student name and course name
-4. Click "Issue Certificate"
-5. Confirm transaction in MetaMask
-6. View the transaction hash and verify on Etherscan
+2. Ensure MetaMask is installed and connected
+3. Switch your MetaMask network to **Sepolia Testnet** (see MetaMask Setup below)
+4. Make sure your wallet has test ETH for gas fees
+5. Enter student name and course name
+6. Click "Issue Certificate"
+7. Confirm transaction in MetaMask
+8. View the transaction hash and verify on Etherscan
+
+### MetaMask Setup for Sepolia Testnet
+
+1. Open MetaMask extension
+2. Click the network dropdown (top left)
+3. Click "Add Network" or "Custom RPC"
+4. Enter Sepolia testnet details:
+
+   - **Network Name**: Sepolia Testnet
+   - **New RPC URL**: `https://rpc.sepolia.org` or use Ankr: `https://rpc.ankr.com/eth_sepolia`
+   - **Chain ID**: `11155111` (or `0xaa36a7` in hex)
+   - **Currency Symbol**: ETH
+   - **Block Explorer URL**: `https://sepolia.etherscan.io`
+
+5. Click "Save"
+6. Make sure you have test ETH in your wallet (see Getting Test ETH section below)
 
 ## Smart Contract Functions
 
