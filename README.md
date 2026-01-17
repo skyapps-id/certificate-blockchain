@@ -20,68 +20,6 @@ A Next.js application for issuing and verifying certificates on the Ethereum Sep
 
 1. Open [Remix IDE](https://remix.ethereum.org/)
 2. Create a new file named `simple.sol` and paste the smart contract code:
-   ```solidity
-   // SPDX-License-Identifier: MIT
-   pragma solidity ^0.8.20;
-
-   contract Certificate {
-       struct CertificateData {
-           string name;
-           string course;
-           uint256 issuedAt;
-           bool exists;
-       }
-
-       mapping(string => CertificateData) public certificates;
-       address public owner;
-
-       event CertificateIssued(
-           string indexed certId,
-           string name,
-           string course,
-           uint256 issuedAt
-       );
-
-       constructor() {
-           owner = msg.sender;
-       }
-
-       modifier onlyOwner() {
-           require(msg.sender == owner, "Only owner can issue certificates");
-           _;
-       }
-
-       function issueCertificate(
-           string memory _certId,
-           string memory _name,
-           string memory _course
-       ) public onlyOwner {
-           require(!certificates[_certId].exists, "Certificate already exists");
-
-           certificates[_certId] = CertificateData({
-               name: _name,
-               course: _course,
-               issuedAt: block.timestamp,
-               exists: true
-           });
-
-           emit CertificateIssued(_certId, _name, _course, block.timestamp);
-       }
-
-       function verifyCertificate(
-           string memory _certId
-       ) public view returns (
-           bool exists,
-           string memory name,
-           string memory course,
-           uint256 issuedAt
-       ) {
-           CertificateData memory cert = certificates[_certId];
-           return (cert.exists, cert.name, cert.course, cert.issuedAt);
-       }
-   }
-   ```
-
 3. Compile the contract using the Solidity Compiler tab
 4. Go to "Deploy & Run Transactions" tab
 5. Select "Injected Provider - MetaMask" as environment
@@ -234,6 +172,7 @@ certificate-blockchain/
 ## Getting Test ETH
 
 Get free test ETH from:
+- [Google Cloud Sepolia Faucet](https://cloud.google.com/application/web3/faucet/ethereum/sepolia)
 - [Sepolia Faucet](https://sepoliafaucet.com/)
 - [Ankr Faucet](https://www.ankr.com/eth/faucet-sepolia/)
 
