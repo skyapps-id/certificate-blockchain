@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { ethers } from "ethers";
-import { CONTRACT_ADDRESS, ABI, certTxMap } from "../lib/contract";
+import ABI from "../lib/abi.json";
+import { CONTRACT_ADDRESS, certTxMap } from "../lib/contract";
 
 type VerifyResult = {
   exists: boolean;
@@ -171,7 +172,7 @@ export default function Verify() {
 
                   <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
                     <div className="flex justify-between items-center py-3 border-b border-white/10">
-                      <span className="text-sm font-medium text-gray-400">
+                      <span className="text-sm font-medium text-emerald-200">
                         Student Name
                       </span>
                       <span className="font-semibold text-white">
@@ -179,7 +180,7 @@ export default function Verify() {
                       </span>
                     </div>
                     <div className="flex justify-between items-center py-3 border-b border-white/10">
-                      <span className="text-sm font-medium text-gray-400">
+                      <span className="text-sm font-medium text-emerald-200">
                         Course
                       </span>
                       <span className="font-semibold text-white">
@@ -187,7 +188,7 @@ export default function Verify() {
                       </span>
                     </div>
                     <div className="flex justify-between items-center py-3">
-                      <span className="text-sm font-medium text-gray-400">
+                      <span className="text-sm font-medium text-emerald-200">
                         Issued At
                       </span>
                       <span className="font-semibold text-white text-sm">
